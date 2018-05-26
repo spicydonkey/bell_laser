@@ -19,24 +19,30 @@ t=dd(:,1);      % time (s)
 V=dd(:,2);      % photodetector output voltage (V)
 v=V/mean(V);   % normalised by the mean value
 
+t_dur=seconds(t);
 
 %%% statistics
-v_std=std(v)       % relative uncertainty of intensity
+v_std=std(v);       % relative uncertainty of intensity
 
+% moving stat
+k_mov=500;       % local no. points to eval stat
+
+v_mov=cat(2,movmean(v,k_mov),movstd(v,k_mov));
 
 
 %% visualise
+%%% raw
 figure('Name','Vt');
-plot(t,v,'.','DisplayName','data');
+plot(hours(t_dur),v,'DisplayName','data');
 
-xlabel('t [s]');
+xlabel('t [hour]');
 ylabel('Beam Intensity (arb. unit)');
 
-vf=smooth(v,100);
 
-hold on;
-plot(t,vf,'-','DisplayName','smoothed','LineWidth',2);
+%%% moving average
+figure('Name','intensity_mov');
+shadedErrorBar(hours(t_dur),v_mov(:,1),v_mov(:,2));
 
-legend('show');
-
+xlabel('$t$ [hour]');
+ylabel('Beam Intensity (arb. unit)');
 
