@@ -16,7 +16,7 @@ pixsize=20e-6;      % camera pixel pitch [m]
 %% load data
 d_dir=dir(dir_data);
 d_names={d_dir.name}';
-b_files=cellfun(@(s) isfile(s),d_names);
+b_files=cellfun(@(s) isfile(fullfile(dir_data,s)),d_names);
 
 filenames=d_names(b_files);
 
@@ -29,7 +29,7 @@ n_img=size(filenames,1);
 
 Ic=cell(n_img,1);
 for ii=1:n_img
-    [tI,tX,tY,terr]=imread_bobcat(filenames{ii});
+    [tI,tX,tY,terr]=imread_bobcat(fullfile(dir_data,filenames{ii}));
     Ic{ii}=tI;
 end
 I_collated=cat(3,Ic{:});        % 3D array or images

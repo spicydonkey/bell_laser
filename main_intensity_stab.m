@@ -5,7 +5,8 @@
 
 
 %%% config
-data_file='C:\Users\HE BEC\Documents\lab\bell_momentumspin\laser\intensity_stab\exp1_20180523\raw\tek40xx\meas\imes0001.csv';
+% path to raw csv from DMM
+data_file='C:\Users\David\Documents\bell\laser\intensity_stab\exp1_20180523\raw\imes0001.csv';
 
 
 
