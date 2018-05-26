@@ -1,0 +1,13 @@
+[user]
+	name = David
+	email = dk.shin1992@gmail.com
+
+[core]
+    editor = "vim"
+
+[push]
+	default = simple
+
+[alias]
+    st = status
+    ci = commit -v
