@@ -6,8 +6,8 @@
 
 %% config
 % path to raw data
-dir_data='C:\Users\David\Documents\bell\laser\ram3_profile_fringe_postfilter\raw';
-
+% dir_data='C:\Users\David\Documents\bell\laser\ram3_profile_fringe_postfilter\raw';
+dir_data='C:\Users\HE BEC\Documents\lab\bell_momentumspin\laser\ram3_profile_fringe_postfilter\raw';
 
 % camera
 pixsize=20e-6;      % camera pixel pitch [m]
@@ -16,7 +16,7 @@ pixsize=20e-6;      % camera pixel pitch [m]
 %% load data
 d_dir=dir(dir_data);
 d_names={d_dir.name}';
-b_files=cellfun(@(s) isfile(fullfile(dir_data,s)),d_names);
+b_files=cellfun(@(s) is_file(fullfile(dir_data,s)),d_names);
 
 filenames=d_names(b_files);
 

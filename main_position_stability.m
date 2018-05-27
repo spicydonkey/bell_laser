@@ -3,28 +3,34 @@
 % DKS
 % 2018-05-26
 
+% TODO
+
 
 %% config
-% path to raw data
-dir_data='C:\Users\David\Documents\bell\laser\ram3_beam_stability\1\raw';
+%%% v1
+% dir_data='C:\Users\David\Documents\bell\laser\ram3_beam_stability\1\raw';
+% dt=10;      % delay between img capture [s]
+% fname_tok='raman3';
+
+%%% v2
+dir_data='C:\Users\HE BEC\Documents\lab\bell_momentumspin\laser\ram3_beam_stability\2';
+dt=60;      % delay between img capture [s]
+fname_tok='img';
 
 % camera
 pixsize=20e-6;      % camera pixel pitch [m]
-
-% data acquisition
-dt=10;      % delay between img capture [s]
 
 
 %% load data
 d_dir=dir(dir_data);
 d_names={d_dir.name}';
-b_files=cellfun(@(s) isfile(fullfile(dir_data,s)),d_names);
+b_files=cellfun(@(s) is_file(fullfile(dir_data,s)),d_names);
 
 filenames=d_names(b_files);
 
 %%% sort images in order of capture sequence
 % get file ID (num in seq)
-f_id=cellfun(@(s) sscanf(s,'raman3_%d.png'),filenames);
+f_id=cellfun(@(s) sscanf(s,strcat(fname_tok,'_%d.png')),filenames);
 % sort
 [~,idx_srt]=sort(f_id);     % sorting index
 filenames=filenames(idx_srt);
